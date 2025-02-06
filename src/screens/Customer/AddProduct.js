@@ -11,7 +11,10 @@ import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
 
-
+    const userData = JSON.parse(localStorage.getItem('ceat_admin_user'))
+   console.log(userData?._id,'uerdata');
+   
+    
     const navigate = useNavigate();
     const [loading, setLoader] = useState(false);
     const [categories, setCategories] = useState([]);
@@ -67,7 +70,8 @@ const AddProduct = () => {
     selectedFiles.forEach((file) => {
         formData.append("images", file);
     });
-
+      
+    formData.append("sellerId",userData?._id)
     // Append other form data
     Object.keys(values).forEach((key) => {
         if (key !== "images") { // Skip 'images' because they're already appended

@@ -11,10 +11,11 @@ import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
 
-
+    
     const navigate = useNavigate();
     const userData = JSON.parse(localStorage.getItem('ceat_admin_user'))
-
+   console.log(userData?._id,'uerdata');
+   
     const [loading, setLoader] = useState(false);
     const [categories, setCategories] = useState([]);
     const [subcategories, setSubCategories] = useState([]);
@@ -68,7 +69,7 @@ const AddProduct = () => {
         formData.append("images", file);
     });
 
-    formData.append('sellerId',userData?._id)
+    formData.append('sellerId',userData?._id);
     Object.keys(values).forEach((key) => {
         if (key !== "images") {
             formData.append(key, values[key]);
@@ -83,7 +84,6 @@ const AddProduct = () => {
                 resetForm();
                 setPreviewImages([]);
                 setSelectedFiles([]);
-
                 navigate('/customers')
 
             } else {
