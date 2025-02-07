@@ -23,7 +23,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 import Glossary from "./screens/glossary";
 import SubCategory from "./screens/subCategory";
-import AddProduct from "./screens/Customer/AddProduct";
+import AddProduct from "./screens/products/AddProduct";
 import Products from "./screens/products";
 import FlashDeals from "./screens/FlashDeals";
 import AddFlashDeals from "./screens/FlashDeals/AddFlashDeals";

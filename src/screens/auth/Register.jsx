@@ -97,7 +97,7 @@ const SellerVerification = () => {
                 const result = await response.json();
                 console.log("Success:", result);
                 toast.success(result?.message || "Seller verification submitted successfully!");
-                navigate('/login')
+                navigate('/')
             } else {
                 const errorResult = await response.json();
                 toast.error(errorResult?.message || "Something went wrong. Please try again.");

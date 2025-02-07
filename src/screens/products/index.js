@@ -10,9 +10,11 @@ import UpdateProducts from "./UpdateProducts";
 const Products = () => {
 
   const [products, setProducts] = useState([]);
+  const userData = JSON.parse(localStorage.getItem('ceat_admin_user'))
+  console.log(userData?._id,'uerdata');
   useEffect(() => {
     axios
-      .get(`${Base_url}/products/getAll`)
+      .get(`${Base_url}/products/productBySeller/${userData?._id}`)
       .then((res) => {
         console.log(res);
 

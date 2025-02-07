@@ -11,24 +11,24 @@ import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
 
-    
-    const navigate = useNavigate();
     const userData = JSON.parse(localStorage.getItem('ceat_admin_user'))
-   console.log(userData?._id,'uerdata');
-   
+    console.log(userData?._id, 'uerdata');
+    const navigate = useNavigate();
     const [loading, setLoader] = useState(false);
     const [categories, setCategories] = useState([]);
+    const [region, setRegion] = useState([]);
+    const [platform, setPlatfrom] = useState([]);
     const [subcategories, setSubCategories] = useState([]);
     const [brands, setBrands] = useState([]);
     const [previewImages, setPreviewImages] = useState([]);
     const [selectedFiles, setSelectedFiles] = useState([]);
 
     console.log(selectedFiles);
-  
-    
 
-    // Fetch categories and subcategories
+
     useEffect(() => {
+        axios.get(`${Base_url}/region/getAll`).then((res) => setRegion(res.data.data)).catch(console.error);
+        axios.get(`${Base_url}/platform/getAll`).then((res) => setPlatfrom(res.data.data)).catch(console.error);
         axios.get(`${Base_url}/category/getAll`).then((res) => setCategories(res.data.data)).catch(console.error);
         axios.get(`${Base_url}/subcategory/getAll`).then((res) => setSubCategories(res.data.data)).catch(console.error);
         axios.get(`${Base_url}/brands/getAll`).then((res) => setBrands(res.data.data)).catch(console.error);
@@ -56,25 +56,28 @@ const AddProduct = () => {
         gst: Yup.string().required("Gst is required"),
         description: Yup.string().required("Description is required"),
         categoryId: Yup.string().required("Category selection is required"),
+        platform: Yup.string().required("Platform selection is required"),
+        region: Yup.string().required("Region selection is required"),
         subCategoryId: Yup.string().required("Sub Category selection is required"),
         brandId: Yup.string().required("Brand selection is required"),
+        type: Yup.string().required("Type selection is required"),
+        stock: Yup.string().required("Stock  is required"),
         images: Yup.array().min(1, "At least one image is required"),
     });
 
-  
+    // Form Submit Handler
     const onSubmit = async (values, { resetForm }) => {
         setLoader(true);
         const formData = new FormData();
-    selectedFiles.forEach((file) => {
-        formData.append("images", file);
-    });
-
-    formData.append('sellerId',userData?._id);
-    Object.keys(values).forEach((key) => {
-        if (key !== "images") {
-            formData.append(key, values[key]);
-        }
-    });
+        selectedFiles.forEach((file) => {
+            formData.append("images", file);
+        });
+        formData.append("sellerId", userData?._id);
+        Object.keys(values).forEach((key) => {
+            if (key !== "images") {
+                formData.append(key, values[key]);
+            }
+        });
 
         try {
             const response = await axios.post(`${Base_url}/products/create`, formData);
@@ -84,7 +87,8 @@ const AddProduct = () => {
                 resetForm();
                 setPreviewImages([]);
                 setSelectedFiles([]);
-                navigate('/customers')
+
+                navigate('/products')
 
             } else {
                 toast.error(response.data.message);
@@ -111,6 +115,11 @@ const AddProduct = () => {
                         discountPrice: "",
                         gst: "",
                         description: "",
+                        region:"",
+                        brandId:"",
+                        platform:"",
+                        stock:"",
+                        type:"",
                         images: [],
                     }}
                     validationSchema={validationSchema}
@@ -139,8 +148,90 @@ const AddProduct = () => {
                                 </div>
 
 
-                                 {/* Category Select */}
-                                 <div className="w-[49%]">
+
+
+                                <div className="w-[49%]">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">Region</label>
+                                    <Field
+                                        as="select"
+                                        name="region"
+                                        className="outline-none bg-lightGray w-full border p-2.5 text-black placeholder:text-black rounded-md"
+                                    >
+                                        <option value="" label="Select Region" />
+                                        {region.map((item) => (
+                                            <option key={item._id} value={item._id}>
+                                                {item.title}
+                                            </option>
+                                        ))}
+                                    </Field>
+                                    <ErrorMessage name="region" component="div" className="text-red text-sm mt-1" />
+                                </div>
+
+
+                                <div className="w-[49%]">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">Platform</label>
+                                    <Field
+                                        as="select"
+                                        name="platform"
+                                        className="outline-none bg-lightGray w-full border p-2.5 text-black placeholder:text-black rounded-md"
+                                    >
+                                        <option value="" label="Select Platform" />
+                                        {platform.map((item) => (
+                                            <option key={item._id} value={item._id}>
+                                                {item.title}
+                                            </option>
+                                        ))}
+                                    </Field>
+                                    <ErrorMessage name="platform" component="div" className="text-red text-sm mt-1" />
+                                </div>
+
+                                <div className="w-[49%]">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">Type</label>
+                                    <Field
+                                        as="select"
+                                        name="type"
+                                        className="outline-none bg-lightGray w-full border p-2.5 text-black placeholder:text-black rounded-md"
+                                    >
+                                        <option value="" label="Select Type" />
+
+                                        <option value={'Key'}>
+                                            Key
+                                        </option>
+                                        <option value={'Key'}>
+                                            Account
+                                        </option>
+                                        <option value={'Key'}>
+                                            Gift
+                                        </option>
+
+                                    </Field>
+                                    <ErrorMessage name="type" component="div" className="text-red text-sm mt-1" />
+                                </div>
+
+                                <div className="w-[49%]">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">Stock</label>
+                                    <Field
+                                        as="select"
+                                        name="stock"
+                                        className="outline-none bg-lightGray w-full border p-2.5 text-black placeholder:text-black rounded-md"
+                                    >
+                                        <option value="" label="Select" />
+
+                                        <option value={'In Stock'}>
+                                        In Stock
+                                        </option>
+                                        <option value={'Out Of Stock'}>
+                                        Out Of Stock
+                                        </option>
+                                      
+
+                                    </Field>
+                                    <ErrorMessage name="stock" component="div" className="text-red text-sm mt-1" />
+                                </div>
+
+
+                                {/* Category Select */}
+                                <div className="w-[49%]">
                                     <label className="block mb-2 text-sm font-medium text-gray-900">Categories</label>
                                     <Field
                                         as="select"
@@ -197,6 +288,9 @@ const AddProduct = () => {
 
 
 
+
+
+
                                 {/* Title Input */}
                                 <div className="w-[49%]">
                                     <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -242,7 +336,7 @@ const AddProduct = () => {
                                     </label>
                                     <Field
                                         name="gst"
-                                        type="text"
+                                        type="number"
                                         placeholder="Enter Gst"
                                         className="border w-full bg-lightGray py-3 px-2 rounded-md"
                                     />
@@ -254,8 +348,8 @@ const AddProduct = () => {
                                 </div>
 
 
-  {/* Image Upload */}
-  <div className="w-[100%]">
+                                {/* Image Upload */}
+                                <div className="w-[100%]">
                                     <label className="block mb-2 text-sm font-medium text-gray-900">Upload Images</label>
                                     <input
                                         type="file"
@@ -296,7 +390,7 @@ const AddProduct = () => {
                                         Description
                                     </label>
                                     <Field
-                                      as="textarea" 
+                                        as="textarea"
                                         name="description"
                                         type="text"
                                         placeholder="Enter Description"
@@ -309,9 +403,9 @@ const AddProduct = () => {
                                     />
                                 </div>
 
-                               
 
-                              
+
+
                             </div>
 
                             <div className=" flex justify-center items-center">
