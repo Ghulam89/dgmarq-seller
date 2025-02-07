@@ -62,6 +62,8 @@ const AddProduct = () => {
         brandId: Yup.string().required("Brand selection is required"),
         type: Yup.string().required("Type selection is required"),
         stock: Yup.string().required("Stock  is required"),
+        minStock: Yup.string().required("min Stock  is required"),
+        stockStatus: Yup.string().required("stock status  is required"),
         images: Yup.array().min(1, "At least one image is required"),
     });
 
@@ -119,6 +121,8 @@ const AddProduct = () => {
                         brandId:"",
                         platform:"",
                         stock:"",
+                        minStock:"",
+                        stockStatus:"",
                         type:"",
                         images: [],
                     }}
@@ -208,11 +212,44 @@ const AddProduct = () => {
                                     <ErrorMessage name="type" component="div" className="text-red text-sm mt-1" />
                                 </div>
 
+ {/* Title Input */}
+ <div className="w-[48%]">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">
+                                        Stock
+                                    </label>
+                                    <Field
+                                        name="stock"
+                                        type="text"
+                                        placeholder="Enter stock"
+                                        className="border w-full bg-lightGray py-3 px-2 rounded-md"
+                                    />
+                                    <ErrorMessage
+                                        name="stock"
+                                        component="div"
+                                        className="text-red text-sm mt-1"
+                                    />
+                                </div>
+                                <div className="w-[48%]">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">
+                                        Min Stock
+                                    </label>
+                                    <Field
+                                        name="minStock"
+                                        type="text"
+                                        placeholder="Enter min Stock"
+                                        className="border w-full bg-lightGray py-3 px-2 rounded-md"
+                                    />
+                                    <ErrorMessage
+                                        name="minStock"
+                                        component="div"
+                                        className="text-red text-sm mt-1"
+                                    />
+                                </div>
                                 <div className="w-[49%]">
-                                    <label className="block mb-2 text-sm font-medium text-gray-900">Stock</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">Stock Status</label>
                                     <Field
                                         as="select"
-                                        name="stock"
+                                        name="stockStatus"
                                         className="outline-none bg-lightGray w-full border p-2.5 text-black placeholder:text-black rounded-md"
                                     >
                                         <option value="" label="Select" />
@@ -226,7 +263,7 @@ const AddProduct = () => {
                                       
 
                                     </Field>
-                                    <ErrorMessage name="stock" component="div" className="text-red text-sm mt-1" />
+                                    <ErrorMessage name="stockStatus" component="div" className="text-red text-sm mt-1" />
                                 </div>
 
 
