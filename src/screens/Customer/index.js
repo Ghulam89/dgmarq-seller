@@ -88,7 +88,7 @@ const Customers = () => {
     <Wrapper>
       <div className=" flex   justify-between items-center">
         <div>
-          <h2 className="main_title">Customers</h2>
+          <h2 className="main_title">Orders</h2>
         </div>
 
       </div>

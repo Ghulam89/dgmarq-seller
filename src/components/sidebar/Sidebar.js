@@ -39,14 +39,14 @@ const Sidebar = ({ side, closeSidebar }) => {
         </li>
 
         
-        <li className="px-4 cursor-pointer   font-semibold   transition-all py-3 text-white flex items-center  hover:bg-[#F1521B] hover:text-white">
+        {/* <li className="px-4 cursor-pointer   font-semibold   transition-all py-3 text-white flex items-center  hover:bg-[#F1521B] hover:text-white">
           <i className="bi bi-speedometer2 mr-2 text-white inline-block text-xl"></i>
           <PiSlidersBold className=" mr-2" size={20} />
 
           <Link to="/customers" className="text-lg capitalize">
             Customers
           </Link>
-        </li>
+        </li> */}
 
         {/* <li className="px-4 cursor-pointer   font-semibold   transition-all py-3 text-white flex items-center  hover:bg-[#F1521B] hover:text-white">
           <i className="bi bi-speedometer2 mr-2 text-white inline-block text-xl"></i>
@@ -107,16 +107,16 @@ const Sidebar = ({ side, closeSidebar }) => {
         <li className="px-4 cursor-pointer  font-semibold  transition-all py-3 text-white flex items-center  hover:bg-[#F1521B] hover:text-white">
           <MdOutlineProductionQuantityLimits className=" mr-2" size={20} />
           <Link to="/products" className="text-lg capitalize">
-            Product
+            Products
           </Link>
         </li>
-        <li className="px-4 cursor-pointer   font-semibold   transition-all py-3 text-white flex items-center hover:bg-[#F1521B] hover:text-white">
+        {/* <li className="px-4 cursor-pointer   font-semibold   transition-all py-3 text-white flex items-center hover:bg-[#F1521B] hover:text-white">
 
           <ImBlogger className=" mr-2" size={20} />
           <Link to="/blogs" className="text-lg capitalize">
             Articles
           </Link>
-        </li>
+        </li> */}
 
         {/* <li className="px-4 cursor-pointer   font-semibold   transition-all py-3 text-white flex items-center hover:bg-[#F1521B] hover:text-white">
           <MdOutlineContacts className=" mr-2" size={20} />
