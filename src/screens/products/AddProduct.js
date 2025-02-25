@@ -59,6 +59,9 @@ const AddProduct = () => {
     type: Yup.string().required("Type selection is required"),
     stock: Yup.string().required("Stock is required"),
     minStock: Yup.string().required("Min Stock is required"),
+    key: Yup.string()
+    .min(5, "Product key must be at least 5 characters")
+    .max(50, "Product key must be at most 50 characters"),
     stockStatus: Yup.string().required("Stock status is required"),
     images: Yup.array().min(1, "At least one image is required"),
   });
@@ -116,6 +119,7 @@ const AddProduct = () => {
             stock: "",
             minStock: "",
             stockStatus: "",
+            key: "",
             type: "",
             images: [],
           }}
@@ -130,7 +134,7 @@ const AddProduct = () => {
               <Form onSubmit={handleSubmit}>
                 <div className="flex gap-5 justify-between flex-wrap">
                   {/* Product Name */}
-                  <div className="w-[100%]">
+                  <div className="w-[49%]">
                     <label className="block mb-2 text-sm font-medium text-gray-900">
                       Product Name
                     </label>
@@ -141,6 +145,18 @@ const AddProduct = () => {
                       className="border w-full bg-lightGray py-3 px-2 rounded-md"
                     />
                     <ErrorMessage name="title" component="div" className="text-red text-sm mt-1" />
+                  </div>
+                  <div className="w-[49%]">
+                    <label className="block mb-2 text-sm font-medium text-gray-900">
+                    Product  Key
+                    </label>
+                    <Field
+                      name="key"
+                      type="text"
+                      placeholder="Enter key"
+                      className="border w-full bg-lightGray py-3 px-2 rounded-md"
+                    />
+                    <ErrorMessage name="key" component="div" className="text-red text-sm mt-1" />
                   </div>
 
                   {/* Region */}

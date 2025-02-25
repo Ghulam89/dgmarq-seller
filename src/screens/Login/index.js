@@ -16,7 +16,7 @@ const AdminLogin = () => {
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid email address").required("Username is Required"),
-      password: Yup.string().min(8, "Minimum 8 characters").required("Password is Required"),
+      password: Yup.string().min(4, "Minimum 8 characters").required("Password is Required"),
     }),
     onSubmit: async (values) => {
       setLoading(true);
