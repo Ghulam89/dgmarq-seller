@@ -32,7 +32,15 @@ const SellerVerification = () => {
         email: "",
         logo: null,
         cnicFront: null,
-        cnicBack: null
+        cnicBack: null,
+        bankDetails: {
+            bankName: "",
+            bankBranch: "",
+            accountNumber: "",
+            nationality: "",
+            city:"",
+            address:""
+        }
     };
 
     const validationSchemaStep1 = Yup.object({
@@ -55,10 +63,17 @@ const SellerVerification = () => {
         logo: Yup.mixed().required("Logo is required"),
         cnicFront: Yup.mixed().required("CNIC Front Image is required"),
         cnicBack: Yup.mixed().required("CNIC Back Image is required"),
+        bankDetails: Yup.object().shape({
+            bankName: Yup.string().required("Bank Name is required"),
+            bankBranch: Yup.string().required("Bank Branch is required"),
+            accountNumber: Yup.string().required("Account Number is required"),
+            nationality: Yup.string().required("Nationality is required"),
+            city: Yup.string().required("City is required"),
+            address: Yup.string().required("Address is required")
+        })
     });
 
-    const  navigate = useNavigate();
-
+    const navigate = useNavigate();
     const handleSubmit = async (values, { setErrors }) => {
         console.log("Form Values:", values);
     
@@ -70,16 +85,20 @@ const SellerVerification = () => {
             });
             return;
         }
-    
         setIsSubmitting(true);
     
         try {
             const formData = new FormData();
+    
+            // Append all top-level fields
             Object.keys(values).forEach((key) => {
-                if (values[key]) {
+                if (values[key] && key !== "bankDetails") {
                     formData.append(key, values[key]);
                 }
             });
+    
+            // Append bankDetails as a JSON string
+            formData.append("bankDetails", JSON.stringify(values.bankDetails));
     
             console.log("FormData Preview:");
             for (const pair of formData.entries()) {
@@ -88,7 +107,7 @@ const SellerVerification = () => {
     
             const response = await fetch(`${Base_url}/seller/register`, {
                 method: "POST",
-                body: formData, 
+                body: formData,
             });
     
             console.log("Response Status:", response.ok);
@@ -97,7 +116,7 @@ const SellerVerification = () => {
                 const result = await response.json();
                 console.log("Success:", result);
                 toast.success(result?.message || "Seller verification submitted successfully!");
-                navigate('/')
+                navigate('/');
             } else {
                 const errorResult = await response.json();
                 toast.error(errorResult?.message || "Something went wrong. Please try again.");
@@ -425,6 +444,7 @@ const SellerVerification = () => {
                             <div className="pb-4 pt-6 mb-4">
                                 <h3 className="text-lg font-medium pb-4 px-4 border-b">Attachments</h3>
                                 <div className="space-y-2 mt-2">
+                                    {/* Existing file upload fields */}
                                     <div className="flex justify-center pt-4 gap-3">
                                         <div className="w-48">
                                             <label className="text-sm">Upload Logo</label>
@@ -449,7 +469,6 @@ const SellerVerification = () => {
                                                 onChange={(e) => setFieldValue("cnicFront", e.currentTarget.files[0])}
                                             />
                                             <ErrorMessage name="cnicFront" component="div" className="text-red" />
-
                                         </div>
                                     </div>
                                     <div className="flex justify-center pt-4 gap-3">
@@ -464,65 +483,101 @@ const SellerVerification = () => {
                                             />
                                             <ErrorMessage name="cnicBack" component="div" className="text-red" />
                                         </div>
-
                                     </div>
-
-                                    
                                 </div>
 
                                 <h3 className="text-lg font-medium pb-4 px-4 border-b">Bank Details</h3>
                                 <div className="space-y-2 mt-2">
-                                <div className="flex pb-3 items-center justify-center gap-3">
+                                    <div className="flex pb-3 items-center justify-center gap-3">
                                         <div className="w-48 text-right">
                                             <label className="text-sm">Bank Name</label>
                                         </div>
-                                        
                                         <div>
                                             <Field
                                                 as={Input}
                                                 type="text"
-                                                name="email"
-                                                placeholder="Enter Bank"
+                                                name="bankDetails.bankName"
+                                                placeholder="Enter Bank Name"
                                                 className="w-96 p-2 border rounded"
                                             />
-                                            <ErrorMessage name="email" component="div" className="text-red" />
+                                            <ErrorMessage name="bankDetails.bankName" component="div" className="text-red" />
                                         </div>
                                     </div>
-                                   
                                     <div className="flex pb-3 items-center justify-center gap-3">
                                         <div className="w-48 text-right">
                                             <label className="text-sm">Bank Branch</label>
                                         </div>
-                                        
                                         <div>
                                             <Field
                                                 as={Input}
                                                 type="text"
-                                                name="email"
+                                                name="bankDetails.bankBranch"
                                                 placeholder="Enter Bank Branch"
                                                 className="w-96 p-2 border rounded"
                                             />
-                                            <ErrorMessage name="email" component="div" className="text-red" />
+                                            <ErrorMessage name="bankDetails.bankBranch" component="div" className="text-red" />
                                         </div>
                                     </div>
                                     <div className="flex pb-3 items-center justify-center gap-3">
                                         <div className="w-48 text-right">
                                             <label className="text-sm">Account Number</label>
                                         </div>
-                                        
                                         <div>
                                             <Field
                                                 as={Input}
                                                 type="text"
-                                                name="email"
-                                                placeholder="Enter account number"
+                                                name="bankDetails.accountNumber"
+                                                placeholder="Enter Account Number"
                                                 className="w-96 p-2 border rounded"
                                             />
-                                            <ErrorMessage name="email" component="div" className="text-red" />
+                                            <ErrorMessage name="bankDetails.accountNumber" component="div" className="text-red" />
                                         </div>
                                     </div>
-
-                                    
+                                    <div className="flex pb-3 items-center justify-center gap-3">
+                                        <div className="w-48 text-right">
+                                            <label className="text-sm">Nationality</label>
+                                        </div>
+                                        <div>
+                                            <Field
+                                                as={Input}
+                                                type="text"
+                                                name="bankDetails.nationality"
+                                                placeholder="Enter Nationality"
+                                                className="w-96 p-2 border rounded"
+                                            />
+                                            <ErrorMessage name="bankDetails.nationality" component="div" className="text-red" />
+                                        </div>
+                                    </div>
+                                    <div className="flex pb-3 items-center justify-center gap-3">
+                                        <div className="w-48 text-right">
+                                            <label className="text-sm">City</label>
+                                        </div>
+                                        <div>
+                                            <Field
+                                                as={Input}
+                                                type="text"
+                                                name="bankDetails.city"
+                                                placeholder="Enter City"
+                                                className="w-96 p-2 border rounded"
+                                            />
+                                            <ErrorMessage name="bankDetails.city" component="div" className="text-red" />
+                                        </div>
+                                    </div>
+                                    <div className="flex pb-3 items-center justify-center gap-3">
+                                        <div className="w-48 text-right">
+                                            <label className="text-sm">Address</label>
+                                        </div>
+                                        <div>
+                                            <Field
+                                                as={Input}
+                                                type="text"
+                                                name="bankDetails.address"
+                                                placeholder="Enter Address"
+                                                className="w-96 p-2 border rounded"
+                                            />
+                                            <ErrorMessage name="bankDetails.address" component="div" className="text-red" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         )}

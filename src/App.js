@@ -30,6 +30,7 @@ import AddFlashDeals from "./screens/FlashDeals/AddFlashDeals";
 import DealsProducts from "./screens/DealsProducts";
 import UpcomingReleases from "./screens/UpcomingReleases";
 import SellerVerification from "./screens/auth/Register";
+import PaymentRequests from "./screens/paymentRequests";
 function App() {
   return (
     <>
@@ -47,6 +48,7 @@ function App() {
           <Route path="/service_request" element={<ServiceRequest />} />
           <Route path="/key_management" element={<SupporterManagement />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/payment-requests" element={<PaymentRequests />} />
           <Route path="/products" element={<Products />} />
           <Route path="/flash-deals" element={<FlashDeals />} />
           <Route path="/upcoming-releases" element={<UpcomingReleases />} />
