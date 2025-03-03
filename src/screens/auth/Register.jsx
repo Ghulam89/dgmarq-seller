@@ -466,6 +466,63 @@ const SellerVerification = () => {
                                         </div>
 
                                     </div>
+
+                                    
+                                </div>
+
+                                <h3 className="text-lg font-medium pb-4 px-4 border-b">Bank Details</h3>
+                                <div className="space-y-2 mt-2">
+                                <div className="flex pb-3 items-center justify-center gap-3">
+                                        <div className="w-48 text-right">
+                                            <label className="text-sm">Bank Name</label>
+                                        </div>
+                                        
+                                        <div>
+                                            <Field
+                                                as={Input}
+                                                type="text"
+                                                name="email"
+                                                placeholder="Enter Bank"
+                                                className="w-96 p-2 border rounded"
+                                            />
+                                            <ErrorMessage name="email" component="div" className="text-red" />
+                                        </div>
+                                    </div>
+                                   
+                                    <div className="flex pb-3 items-center justify-center gap-3">
+                                        <div className="w-48 text-right">
+                                            <label className="text-sm">Bank Branch</label>
+                                        </div>
+                                        
+                                        <div>
+                                            <Field
+                                                as={Input}
+                                                type="text"
+                                                name="email"
+                                                placeholder="Enter Bank Branch"
+                                                className="w-96 p-2 border rounded"
+                                            />
+                                            <ErrorMessage name="email" component="div" className="text-red" />
+                                        </div>
+                                    </div>
+                                    <div className="flex pb-3 items-center justify-center gap-3">
+                                        <div className="w-48 text-right">
+                                            <label className="text-sm">Account Number</label>
+                                        </div>
+                                        
+                                        <div>
+                                            <Field
+                                                as={Input}
+                                                type="text"
+                                                name="email"
+                                                placeholder="Enter account number"
+                                                className="w-96 p-2 border rounded"
+                                            />
+                                            <ErrorMessage name="email" component="div" className="text-red" />
+                                        </div>
+                                    </div>
+
+                                    
                                 </div>
                             </div>
                         )}
