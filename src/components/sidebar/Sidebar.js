@@ -33,7 +33,7 @@ const Sidebar = ({ side, closeSidebar }) => {
           <i className="bi bi-speedometer2 mr-2 text-white inline-block text-xl"></i>
           <PiSlidersBold className=" mr-2" size={20} />
 
-          <Link to="/customers" className="text-lg capitalize">
+          <Link to="/orders" className="text-lg capitalize">
             Orders
           </Link>
         </li>

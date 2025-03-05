@@ -31,6 +31,8 @@ import DealsProducts from "./screens/DealsProducts";
 import UpcomingReleases from "./screens/UpcomingReleases";
 import SellerVerification from "./screens/auth/Register";
 import PaymentRequests from "./screens/paymentRequests";
+import Orders from "./screens/orders/Orders";
+import OrderDetails from "./screens/orders/OrdersDetails";
 function App() {
   return (
     <>
@@ -60,6 +62,8 @@ function App() {
           <Route path="/brands" element={<Brands />} />
           <Route path="/home_banner" element={<HomeBanner />} />
           <Route path="/blogs" element={<News />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/:id" element={<OrderDetails />} />
           <Route path="/glossary" element={<Glossary/>} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/contact-us" element={<ContactUs />} />
