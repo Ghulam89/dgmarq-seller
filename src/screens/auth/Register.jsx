@@ -90,7 +90,7 @@ const SellerVerification = () => {
         try {
             const formData = new FormData();
     
-            // Append all top-level fields
+           
             Object.keys(values).forEach((key) => {
                 if (values[key] && key !== "bankDetails") {
                     formData.append(key, values[key]);

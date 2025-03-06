@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -105,6 +105,7 @@ const AdminLogin = () => {
               <div className=" text-primary text-sm">{formik.errors.password}</div>
             ) : null}
           </div>
+          
 
           <div className="mt-2 w-full">
             {loading ? (
@@ -140,6 +141,10 @@ const AdminLogin = () => {
                 Login
               </button>
             )}
+          </div>
+
+          <div className="">
+            <p  className=" text-white text-center">Don't have an account? <Link to={'/seller-verification'} className=" underline text-primary font-medium">Register</Link> </p>
           </div>
         </form>
       </div>
