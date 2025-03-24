@@ -1,4 +1,5 @@
 import { BsSliders } from "react-icons/bs";
+import { CgClose } from "react-icons/cg";
 import { FaQuestionCircle } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 import { ImBlogger } from "react-icons/im";
@@ -9,13 +10,16 @@ import { Link } from "react-router-dom";
 const Sidebar = ({ side, closeSidebar }) => {
   return (
     <div
-      className={`fixed top-0  shadow-xl ${side} sm:left-0 w-64 overflow-x-auto h-screen bg-[#000] z-10 transition-all`}
+      className={`fixed top-0  shadow-xl ${side} sm:left-0 w-64 overflow-x-auto h-screen bg-[#000] z-50 transition-all`}
     >
-      <i
-        className="bi bi-x-lg absolute text-black top-4 right-4 sm:hidden block cursor-pointer text-lg"
-        onClick={closeSidebar}
-      ></i>
+      <div className=" text-emerald-50 flex justify-end pt-2">
+      <CgClose className=" cursor-pointer"  onClick={closeSidebar} size={30}  color="white" />
+      </div>
+
+
+    
       <div className="  p-5">
+      
         <img src={require('../../assets/image/admin-logo.jpeg')} alt="" />
       </div>
 

@@ -132,9 +132,9 @@ const AddProduct = () => {
               <AutoCalculateGST />
 
               <Form onSubmit={handleSubmit}>
-                <div className="flex gap-5 justify-between flex-wrap">
+                <div className="flex gap-5  justify-between flex-wrap">
                   {/* Product Name */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">
                       Product Name
                     </label>
@@ -146,7 +146,7 @@ const AddProduct = () => {
                     />
                     <ErrorMessage name="title" component="div" className="text-red text-sm mt-1" />
                   </div>
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">
                     Product  Key
                     </label>
@@ -160,7 +160,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Region */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Region</label>
                     <Field
                       as="select"
@@ -178,7 +178,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Platform */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Platform</label>
                     <Field
                       as="select"
@@ -196,7 +196,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Type */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Type</label>
                     <Field
                       as="select"
@@ -212,7 +212,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Stock */}
-                  <div className="w-[48%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Stock</label>
                     <Field
                       name="stock"
@@ -224,7 +224,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Min Stock */}
-                  <div className="w-[48%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Min Stock</label>
                     <Field
                       name="minStock"
@@ -236,7 +236,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Stock Status */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Stock Status</label>
                     <Field
                       as="select"
@@ -251,7 +251,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Brand (Categories) */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Categories</label>
                     <Field
                       as="select"
@@ -269,7 +269,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Category */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Sub Categories</label>
                     <Field
                       as="select"
@@ -287,7 +287,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Sub Category */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Sub Sub Categories</label>
                     <Field
                       as="select"
@@ -305,7 +305,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Actual Price */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Actual Price</label>
                     <Field
                       name="actualPrice"
@@ -317,7 +317,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* Discount Price */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">Discount Price</label>
                     <Field
                       name="discountPrice"
@@ -329,7 +329,7 @@ const AddProduct = () => {
                   </div>
 
                   {/* GST (Calculated automatically) */}
-                  <div className="w-[49%]">
+                  <div className="sm:w-[48%] w-full">
                     <label className="block mb-2 text-sm font-medium text-gray-900">GST</label>
                     <Field
                       name="gst"
